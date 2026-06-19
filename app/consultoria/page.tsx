@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Consultoria Técnica em Esquadrias de Alto Padrão',
@@ -36,9 +38,25 @@ const PARA_QUEM = [
   'Engenheiros que precisam de suporte técnico nas etapas de execução',
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Consultoria', url: '/consultoria' },
+]);
+
+const service = serviceSchema({
+  name: 'Consultoria Técnica em Esquadrias',
+  description:
+    'Consultoria e assessoria técnica em esquadrias para proprietários, arquitetos, construtoras e engenheiros. Embutida nos projetos que executamos. Contratada à parte pra obras fora da nossa região.',
+  url: '/consultoria',
+  serviceType: 'Consultoria técnica',
+  areaServedCities: ['Jundiaí', 'Cabreúva', 'Itupeva', 'Louveira', 'Vinhedo', 'Valinhos', 'São Paulo', 'Brasil'],
+});
+
 export default function Consultoria() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[60vh] flex items-center"
         style={{

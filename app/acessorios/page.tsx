@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Acessórios Udinese — linha completa em Jundiaí',
@@ -52,9 +54,25 @@ const EM_OBRA = [
   { src: '/images/acessorios/06-fechadura-discreta-vista-externa.jpg', alt: 'Fechadura discreta — vista externa' },
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Acessórios', url: '/acessorios' },
+]);
+
+const service = serviceSchema({
+  name: 'Acessórios Udinese pra Esquadrias',
+  description:
+    'Linha completa Udinese pra esquadrias de alumínio premium: blackout, vedação contra água, controle remoto, mosquiteiros, roldanas e tranquetas. Selecionados peça por peça conforme projeto.',
+  url: '/acessorios',
+  serviceType: 'Acessório de esquadria',
+});
+
 export default function Acessorios() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section className="bg-neutro-900 py-24 md:py-32">
         <div className="max-w-site mx-auto px-5 lg:px-10">
           <p className="text-xs uppercase tracking-marca text-aco-gelo mb-4">Acessórios |</p>

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import FormOrcamento from '@/components/FormOrcamento';
+import { breadcrumbSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Peça seu orçamento',
@@ -7,9 +9,15 @@ export const metadata: Metadata = {
     'Resposta em até 24h úteis no WhatsApp. Atendimento direto da Fábrica da Esquadria em Jundiaí, sem intermediário.',
 };
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Orçamento', url: '/orcamento' },
+]);
+
 export default function Orcamento() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <section className="bg-neutro-900 py-20 md:py-28">
         <div className="max-w-site mx-auto px-5 lg:px-10">
           <p className="text-xs uppercase tracking-marca text-aco-gelo mb-4">Orçamento |</p>

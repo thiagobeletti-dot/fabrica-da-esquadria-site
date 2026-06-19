@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
 import { getGaleria } from '@/lib/galerias';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import TeaserConsultoria from '@/components/TeaserConsultoria';
 
 export const metadata: Metadata = {
@@ -12,9 +14,26 @@ export const metadata: Metadata = {
 const NOME = 'Guarda-corpo';
 const MSG_WHATSAPP = mensagemProduto(NOME);
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Guarda-corpo', url: '/guarda-corpo' },
+]);
+
+const service = serviceSchema({
+  name: 'Guarda-corpo em Vidro',
+  description:
+    'Guarda-corpos em vidro com fixação invisível (Premium) ou torre de inox (Clássica). Para escadas, sacadas, mezaninos e áreas externas. Torre de inox de 40cm com dois pontos de fixação e conectores de alinhamento.',
+  url: '/guarda-corpo',
+  serviceType: 'Guarda-corpo em vidro',
+  image: '/images/guarda-corpo/037-20241017_155535.jpg',
+});
+
 export default function GuardaCorpo() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{

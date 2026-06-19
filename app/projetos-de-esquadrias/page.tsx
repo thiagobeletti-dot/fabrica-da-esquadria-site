@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
 import { getGaleria } from '@/lib/galerias';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import TeaserConsultoria from '@/components/TeaserConsultoria';
 
 export const metadata: Metadata = {
@@ -21,9 +23,25 @@ const ACESSORIOS = [
   { src: '/images/acessorios/06-fechadura-discreta-vista-externa.jpg', alt: 'Fechadura discreta — vista externa' },
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Projetos de Esquadrias', url: '/projetos-de-esquadrias' },
+]);
+
+const service = serviceSchema({
+  name: 'Esquadrias de Alumínio — Linhas Gold e Suprema',
+  description:
+    'Janelas, portas e fachadas em alumínio sob medida. Linha Gold (perfil padrão alto desempenho) e Linha Suprema (perfil reforçado pra grandes vãos). Acessórios premium Udinese.',
+  url: '/projetos-de-esquadrias',
+  serviceType: 'Esquadria de alumínio',
+});
+
 export default function ProjetosDeEsquadrias() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{

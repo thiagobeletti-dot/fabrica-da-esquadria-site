@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import TeaserConsultoria from '@/components/TeaserConsultoria';
 
 export const metadata: Metadata = {
@@ -18,9 +20,27 @@ const FOTOS = Array.from({ length: 10 }, (_, i) =>
   `/images/coberturas-curadas/${String(i + 1).padStart(2, '0')}.jpg`
 );
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Coberturas', url: '/coberturas' },
+  { name: 'Coberturas e Pergolados', url: '/coberturas/coberturas-pergolados' },
+]);
+
+const service = serviceSchema({
+  name: 'Coberturas e Pergolados em Vidro',
+  description:
+    'Coberturas em vidro laminado conforme NBR 7199 e pergolados em alumínio pra varanda, área gourmet, terraço e quintal. Vidros incolor, colorido ou de controle solar.',
+  url: '/coberturas/coberturas-pergolados',
+  serviceType: 'Cobertura em vidro',
+  image: '/images/coberturas-curadas/card-coberturas-pergolados.jpg',
+});
+
 export default function CoberturasPergolados() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{

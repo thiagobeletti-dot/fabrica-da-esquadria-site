@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
 import { getGaleria } from '@/lib/galerias';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import TeaserConsultoria from '@/components/TeaserConsultoria';
 
 export const metadata: Metadata = {
@@ -33,9 +35,26 @@ const CARDS = [
   },
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Coberturas', url: '/coberturas' },
+]);
+
+const service = serviceSchema({
+  name: 'Coberturas em Vidro e Pergolados',
+  description:
+    'Coberturas em vidro laminado e pergolados em alumínio pra varanda, área gourmet, terraço e quintal. Domus e claraboias pra trazer luz natural. Conformidade NBR 7199.',
+  url: '/coberturas',
+  serviceType: 'Cobertura em vidro',
+  image: '/categorias/coberturas.jpg',
+});
+
 export default function Coberturas() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{

@@ -31,8 +31,18 @@ export const metadata: Metadata = {
     // Fallback: usando hero principal até gerar OG dedicado 1200x630.
     images: ['/images/hero/hero-interior-vista-por-do-sol.jpg'],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fábrica da Esquadria',
+    description:
+      'Vidro Jumbo, porta articulada e serralheria fina. Em Jundiaí, há 16 anos.',
+    images: ['/images/hero/hero-interior-vista-por-do-sol.jpg'],
+  },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
   },
 };
 

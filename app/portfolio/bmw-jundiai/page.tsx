@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
+import { breadcrumbSchema, articleSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'BMW Jundiaí — mais de 4 anos de parceria, do projeto à manutenção',
@@ -34,9 +36,27 @@ const FOTOS_PROCESSO = [
   { src: '/images/portfolio/bmw-jundiai/bmw-noturna-showroom.jpg', alt: 'Showroom em operação à noite' },
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Portfólio', url: '/portfolio' },
+  { name: 'BMW Jundiaí', url: '/portfolio/bmw-jundiai' },
+]);
+
+const article = articleSchema({
+  headline: 'Case BMW Jundiaí — 4 anos de parceria, do projeto à manutenção',
+  description:
+    'Concessionária BMW em Jundiaí construída em Vidro Jumbo. Participação técnica desde a fase de projeto arquitetônico, fabricação e instalação da fachada cilíndrica, esquadrias e serralheria fina. 4 anos de manutenção continuada.',
+  url: '/portfolio/bmw-jundiai',
+  image: '/images/portfolio/bmw-jundiai/bmw-aerea-crepusculo.jpg',
+  datePublished: '2026-05-25',
+  dateModified: '2026-06-19',
+});
+
 export default function CaseBMWJundiai() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={article} />
       <section
         className="relative bg-neutro-900 min-h-[65vh] flex items-center"
         style={{

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
 import { getGaleria } from '@/lib/galerias';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import TeaserConsultoria from '@/components/TeaserConsultoria';
 
 export const metadata: Metadata = {
@@ -53,9 +55,25 @@ const TIPOS = [
   },
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Projetos Especiais', url: '/projetos-especiais' },
+]);
+
+const service = serviceSchema({
+  name: 'Projetos Especiais — Vidro Jumbo, Porta Fluttua e Vãos Grandes',
+  description:
+    'Soluções fora do catálogo padrão: Vidro Jumbo (chapas de grande formato), Porta Fluttua autoral (sem trilho inferior), porta pivotante, porta articulada, brises e ripados arquitetônicos.',
+  url: '/projetos-especiais',
+  serviceType: 'Esquadria sob medida',
+});
+
 export default function ProjetosEspeciais() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{

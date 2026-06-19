@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 import { CIDADES, getCidade } from '@/lib/cidades';
 import { linkWhatsApp } from '@/lib/whatsapp';
+import { breadcrumbSchema, citySchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 // Fotos genéricas do acervo (pasta /cidades/ não existe — usar fotos do portfólio).
 const HERO_CIDADE = '/images/hero/hero-interior-vista-por-do-sol.jpg';
@@ -18,8 +20,18 @@ export default function PaginaCidade({ slug }: { slug: string }) {
   const outras = CIDADES.filter((x) => x.slug !== c.slug);
   const mensagem = `Olá! Vi o site da Fábrica da Esquadria e quero orçamento em ${c.nome}.`;
 
+  // Schemas: Service localizado pra cidade + breadcrumb
+  const breadcrumb = breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Cidades', url: '/#cidades' },
+    { name: c.nome, url: `/${c.slug}` },
+  ]);
+  const service = citySchema(c.slug);
+
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      {service && <JsonLd data={service} />}
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{

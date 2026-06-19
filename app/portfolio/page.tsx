@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Galeria from '@/components/Galeria';
 import { linkWhatsApp, mensagemSimples } from '@/lib/whatsapp';
+import { breadcrumbSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Portfólio de obras entregues',
@@ -8,9 +10,15 @@ export const metadata: Metadata = {
     'Obras entregues pela Fábrica da Esquadria em Jundiaí e região. Vidro Jumbo, porta articulada e serralheria fina em projetos residenciais e comerciais.',
 };
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Portfólio', url: '/portfolio' },
+]);
+
 export default function Portfolio() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <section className="bg-neutro-900 py-24 md:py-32">
         <div className="max-w-site mx-auto px-5 lg:px-10">
           <p className="text-xs uppercase tracking-marca text-aco-gelo mb-4">Portfólio |</p>

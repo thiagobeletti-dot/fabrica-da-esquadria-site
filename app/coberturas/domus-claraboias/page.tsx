@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { linkWhatsApp, mensagemProduto } from '@/lib/whatsapp';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import TeaserConsultoria from '@/components/TeaserConsultoria';
 
 export const metadata: Metadata = {
@@ -23,9 +25,27 @@ const FOTOS = [
   ),
 ];
 
+const breadcrumb = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Produtos', url: '/#produtos' },
+  { name: 'Coberturas', url: '/coberturas' },
+  { name: 'Domus e Claraboias', url: '/coberturas/domus-claraboias' },
+]);
+
+const service = serviceSchema({
+  name: 'Domus e Claraboias em Vidro',
+  description:
+    'Aberturas zenitais em vidro laminado conforme NBR 7199 — domus e claraboias que trazem luz natural pra corredores, escadas e ambientes internos sem janela.',
+  url: '/coberturas/domus-claraboias',
+  serviceType: 'Claraboia em vidro',
+  image: '/images/coberturas-curadas/hero-domus.jpg',
+});
+
 export default function DomusClaraboias() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
+      <JsonLd data={service} />
       <section
         className="relative bg-neutro-900 min-h-[55vh] flex items-center"
         style={{
