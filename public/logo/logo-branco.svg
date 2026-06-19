@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80" role="img" aria-label="Fábrica da Esquadria">
+  <text x="240" y="52" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="40" font-weight="500" fill="#FFFFFF" letter-spacing="2">FÁBRICA</text>
+  <line x1="250" y1="20" x2="250" y2="60" stroke="#FFFFFF" stroke-width="1.2"/>
+  <text x="260" y="52" text-anchor="start" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="400" fill="#FFFFFF" letter-spacing="5">DA ESQUADRIA</text>
+</svg>

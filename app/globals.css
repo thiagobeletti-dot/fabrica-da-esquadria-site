@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --aco: #2A7EA4;
+  --aco-dark: #1C5F7E;
+  --aco-gelo: #D0E8F2;
+  --neutro-900: #1A1A1A;
+  --neutro-500: #5C5C5C;
+  --neutro-200: #E5E5E5;
+  --neutro-100: #F5F5F5;
+  --neutro-50: #FAFAFA;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--neutro-900);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Pipe vertical antes do título de seção (continuidade do IG) */
+.titulo-secao {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aco);
+  display: inline-block;
+  position: relative;
+  padding-left: 0;
+}
+
+.titulo-secao::after {
+  content: ' |';
+  color: var(--aco);
+}
+
+/* Botão primário (azul aço sólido) */
+.btn-primario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 28px;
+  background: var(--aco);
+  color: #FFFFFF;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+
+.btn-primario:hover {
+  background: var(--aco-dark);
+}
+
+/* Botão secundário (outline) */
+.btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 28px;
+  background: transparent;
+  color: var(--neutro-900);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--neutro-900);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.btn-secundario:hover {
+  background: var(--neutro-900);
+  color: #FFFFFF;
+}
+
+/* Botão WhatsApp (verde sólido) */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-weight: 500;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #1da851;
+}
